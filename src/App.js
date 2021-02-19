@@ -2,12 +2,20 @@ import {useState, useEffect} from 'react';
 import Message from './Message';
 import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 import './App.css';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import db from './firebase';
 
 function App() {
 
   const [input,setInput] = useState("");
   const [username,setUsername] = useState("");
-  const [messages,setMessages] = useState([]);
+  const [messages,setMessages] = useState([{username:'jj', message:"kkkk"}]);
+
+  useEffect(() => {
+    db.collection('messages').onSnapshot(snapshot=>{
+      setMessages(snapshot.docs.map(doc=>doc.data()))})
+  }, []);
 
 
   useEffect(()=>{
@@ -32,11 +40,11 @@ function App() {
       </form>
       {
         messages.map(message=>(
-        <Message username={message.username} text={message.text}/>
+        <Message username={username} message={message}/>
        ) )
       }
     </div>
   );
 }
 
-export default App;
+export default App
