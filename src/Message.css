@@ -1,12 +1,23 @@
+.extra{
+    height: 8rem;
+}
+#app_messagesContainer{
+    max-height: max-content;
+    display: flex !important;
+    flex-direction: column-reverse !important;
+   
+}
 .message{
     padding:10px;
     margin:10px;
     width:fit-content;
+    background-color: rgb(206, 203, 203) !important;
+    line-break: auto;
 }
 
 .message__user{
     margin-left: auto;
     color:white;
     text-align: left !important;
-    background-color: blue !important;
+    background-color: rgb(46, 137, 240) !important;
 }
